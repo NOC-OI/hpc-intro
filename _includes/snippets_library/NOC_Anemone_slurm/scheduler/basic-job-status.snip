@@ -1,0 +1,9 @@
+```
+  JOBID  PARTITION            NAME   USER  ST  TIME  NODES  NODELIST(REASON) 
+  249490      test        example-   auser R   0:24      1        compute032
+```
+{: .output}
+
+We can see all the details of our job, most importantly that it is in the `R`
+or `RUNNING` state. Sometimes our jobs might need to wait in a queue
+(`PENDING`) or they might have failed (`F`) with some non-zero exit code.

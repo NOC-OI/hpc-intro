@@ -1,0 +1,76 @@
+Let's take a closer look at the `python` module. In this case, there
+are four different versions: `Python-bundle-PyPI/2023.06-GCCcore-12.3.0`, 
+`Python/2.7.18-GCCcore-12.3.0`, `Python/2.7.18-GCCcore-12.3.0` and the version 
+from `Anaconda3/2024.02-1`.
+How do we load each copy and which copy is the default?
+
+In this case, `Python/3.11.3-GCCcore-12.3.0` has a `(d)` next to it. This indicates that it
+is the default - if we type `module load Python`, this is the copy that will be
+loaded.
+
+```
+{{ site.remote.prompt }} module load Python
+{{ site.remote.prompt }} python --version
+```
+{: .language-bash}
+
+```
+Python 3.11.3
+```
+{: .output}
+
+So how do we load the non-default copy of a software package? In this case, the
+only change we need to make is be more specific about the module we are
+loading. There are four Python modules: `Python-bundle-PyPI/2023.06-GCCcore-12.3.0`, 
+`Python/2.7.18-GCCcore-12.3.0`, `Python/2.7.18-GCCcore-12.3.0` and the version 
+from `Anaconda3/2024.02-1`.
+To load a non-default module, we need to make add the version number after the
+`/` in our `module load` command
+
+```
+{{ site.remote.prompt }} module load Python/2.7.18-GCCcore-12.3.0
+```
+{: .language-bash}
+
+```
+The following have been reloaded with a version change:
+  1) Python/3.11.3-GCCcore-12.3.0 => Python/2.7.18-GCCcore-12.3.0
+```
+{: .output}
+
+What happened? The module command is telling us that we cannot have two `Python`
+modules loaded at the same time as this could cause confusion about which
+version you are using. It has removed version 3.11.3 and repalced it with 2.7.18.
+
+```
+{{ site.remote.prompt }} python --version
+```
+{: .language-bash}
+
+```
+Python 2.7.18
+```
+{: .output}
+
+We now have successfully switched from Python 3.11.3 to 2.7.18.
+
+As switching between different versions of the same module is often used you
+can use `module swap` rather than `module load`. 
+The equivalent of the steps above would be:
+
+```
+{{ site.remote.prompt }} module unload Python/2.7.18-GCCcore-12.3.0
+{{ site.remote.prompt }} module load Python
+Python 3.11.3
+{{ site.remote.prompt }} python --version
+{{ site.remote.prompt }} module swap Python Python/2.7.18-GCCcore-12.3.0
+
+The following have been reloaded with a version change:
+  1) Python/3.11.3-GCCcore-12.3.0 => Python/2.7.18-GCCcore-12.3.0
+
+{{ site.remote.prompt }}  python --version
+Python 2.7.18
+```
+{: .language-bash}
+
+This achieves the same result as unload followed by load but in a single step.
