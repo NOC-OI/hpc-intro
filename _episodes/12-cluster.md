@@ -89,18 +89,18 @@ system files and change as you install new software or upgrade your OS.
 > These differ in both the amount of space allocated and whether or not they
 > are backed up.
 >
-> * __Home__ -- often a _network filesystem_, data stored here is available
->   throughout the HPC system, and often backed up periodically. Files stored
+> * __Home__ -- (/home) is a _network filesystem_, data stored here is available
+>   throughout the HPC system, and often backed up periodically. 
+>   Each user has a quota of 20GB. Files stored
 >   here are typically slower to access, the data is actually stored on another
 >   computer and is being transmitted and made available over the network!
-> * __Scratch__ -- typically faster than the networked Home directory, but not
->   usually backed up, and should not be used for long term storage.
-> * __Work__ -- sometimes provided as an alternative to Scratch space, Work is
->   a fast file system accessed over the network. Typically, this will have
+> * __Scratch__ -- (/dssgfs01/scratch) is faster than Home, but not
+>   is not backed up, and should not be used for long term storage. It has a
+>   quota of 8TB.
+> * __Work__ --  (/dssgfs01/work) is provided as an alternative to Scratch space, Work is
+>   a fast file system accessed over the network. It has
 >   higher performance than your home directory, but lower performance than
->   Scratch; it may not be backed up. It differs from Scratch space in that
->   files in a work file system are not automatically deleted for you: you must
->   manage the space yourself.
+>   Scratch; it is backed up. It has a quota of 4TB for each user.
 {: .callout}
 
 ## Nodes
